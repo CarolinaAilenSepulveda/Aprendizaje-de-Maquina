@@ -2,9 +2,16 @@
 #Los datos son 32 atributos radiómicos (tamaños, formas, texturas, etc.). 
 #El objetivo es desarrollar un clasificador que a través de los  atributos permita predecir la benignidad o  malignidad de un tumor.
 
+#Librerias
 import pandas as pd
 import matplotlib.pyplot as plt
 %matplotlib inline
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from collections import Counter
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score,confusion_matrix,classification_report
+import seaborn as sns
 
 cancer_tissues = pd.read_csv("https://raw.githubusercontent.com/emmanueliarussi/DataScienceCapstone/master/3_MidtermProjects/ProjectBCD/data/data.csv")
 cancer_tissues.head()
@@ -33,14 +40,6 @@ plt.show()
 
 #Podemos observar con solo dos variables que la clase Benigno se corresponde a los valores más bajos de la media de radio y textura del tejido mamario, mientras que los casos Malignos presentan mayor área y textura. El parámetro que más divide gráficamente ambos grupos es la media del radio.
 #El primer clasificador que empleo es RandomForest con un 80% de los datos para entrenamiento y el 20% para testeo. En este caso se realiza una imputación de 0 para los campos NaN.
-
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from collections import Counter
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score,confusion_matrix,classification_report
-import seaborn as sns
-
 
 data_original = pd.read_csv("https://raw.githubusercontent.com/emmanueliarussi/DataScienceCapstone/master/3_MidtermProjects/ProjectBCD/data/data.csv")
 data = data_original.fillna(0) #Reemplazo los NaN por 0, como todos los campos son decimales sirve el remplazo en todos los registros 
