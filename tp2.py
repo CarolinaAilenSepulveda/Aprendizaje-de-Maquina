@@ -2,6 +2,7 @@
 #80% de datos para entrenamiento y 20% para testeo. Y una vez obtenidas las variables nuevas entrenadas aplicar la curva ROC a las mismas.
 
 #2)
+#Librerias
 import random
 import numpy as np
 import pandas  as pd

@@ -2,8 +2,21 @@
 #Armo un dataset con tres features (x,y,clase) con 200 datos, 100 para cada clase (A o B). Tomo 100 datos del dataset completo para entrenar al clasificador y luego los restantes 100 para comprobar su validez. La primer columna es la clase, la segunda X y la tercera Y.
 #Se ejecuta el código de abajo dos veces, la primera para obtener los 100 valores de X y luego para obtener los valores de Y.
 
+#Librerias
 import random
 import numpy as np
+import pandas as pd
+pd.__version__
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import classification_report
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeRegressor, plot_tree
+from sklearn.preprocessing import StandardScaler
 
 A =np.zeros(shape=100)
 B =np.zeros(shape=100)
@@ -17,12 +30,6 @@ while(i < 100):
     i+=1
 print(A)
 print(B)
-
-import pandas as pd
-pd.__version__
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.neighbors import KNeighborsClassifier
 
 entrenamiento_dataframe = pd.read_csv("https://github.com/CarolinaAilenSepulveda/AM/blob/main/dataset_entrenamiento_knn%20-%20Hoja%201.csv?raw=true", sep=",")
 entrenamiento_dataframe.columns = ['clase',	'x','y']
@@ -43,7 +50,6 @@ plt.ylabel("y")
 ax.legend()
 plt.show()
 
-from sklearn.metrics import classification_report
 
 entrenamiento_dataframe = pd.read_csv("https://github.com/CarolinaAilenSepulveda/AM/blob/main/dataset_entrenamiento_knn%20-%20Hoja%201.csv?raw=true", sep=",")
 entrenamiento_dataframe.columns = ['clase',	'x','y']
@@ -77,14 +83,6 @@ print(knn.score(x,y))
 #Considero que sucede esto aunque se aumente el número de vecinos ya que ambas clases fueron generadas a partir de un random() de 0 a 100, por lo que los datos pueden llegar a ser parecidos. A su vez, al ver el primer gráfico generado con ambas clases en diferentes colores, observamos los datos dispersos y mezclados entre si. No se observa una clara tendencia para ninguna de las clases, lo que puede generar que el clasificador no sepa como identificar correctamente los puntos y se vuelva difícil plantear una división entre A y B.
 
 #2)
-import pandas as pd
-pd.__version__
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import classification_report
-from sklearn.model_selection import KFold
-from sklearn.model_selection import cross_val_score
 
 entrenamiento_dataframe = pd.read_csv("https://github.com/CarolinaAilenSepulveda/AM/blob/main/dataset_entrenamiento_knn%20-%20Hoja%201.csv?raw=true", sep=",")
 entrenamiento_dataframe.columns = ['clase',	'x','y']
@@ -118,18 +116,6 @@ resultados.mean()
 
 #3)
 #Desarrollar clasificador que prediga si una canción va a ser gustada o no por el usuario. El target = 1 implica que la canción fue gustada y el target = 0 que no. Tomo un total de 35 elementos del dataset para usarlos como validación y el resto como entrenamiento.
-
-import pandas as pd
-pd.__version__
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import classification_report
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeRegressor, plot_tree
-from sklearn.preprocessing import StandardScaler
-
 
 entrenamiento_dataframe = pd.read_csv("https://github.com/CarolinaAilenSepulveda/AM/blob/main/Dataset_entrenamiento_target.csv?raw=true", sep=",")
 entrenamiento_dataframe.columns= ['number','acousticness','danceability','duration_ms','energy','instrumentalness','key','liveness','loudness','mode','speechiness','tempo','time_signature','valence','target','song_title','artist']
