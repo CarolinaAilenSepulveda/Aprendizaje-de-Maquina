@@ -4,6 +4,18 @@
 #2)
 import random
 import numpy as np
+import pandas  as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import RocCurveDisplay
+from sklearn.svm import SVC
+from sklearn.metrics import classification_report
+pd.__version__
+import altair as alt
+import seaborn as sb
 
 A =np.zeros(shape=50)
 B =np.zeros(shape=50)
@@ -19,15 +31,6 @@ print(A)
 print(B)
 
 #Genero el dataset cuya primer columna será x (valor) y la segunda y (clase A o B). Si la clase es A el valor será 1 y si la clase es B será 0.
-import pandas  as pd
-import matplotlib.pyplot as plt
-%matplotlib inline
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import RocCurveDisplay
-from sklearn.svm import SVC
-from sklearn.metrics import classification_report
 
 data = pd.read_csv("https://github.com/CarolinaAilenSepulveda/AM/blob/main/dataset_linear_reg%20-%20Hoja%201.csv?raw=true", sep=",")
 data.columns = ['x',	'clase']
@@ -58,13 +61,6 @@ print(classification_report(y_test, y_predicta))
 #Para un entrenamiento del 80% y validación del 20% se obtiene un área bajo la curva de 0.58. Al bajar el entrenamiento a 70% el área bajo la curva baja a 0.56.
 
 #3)
-import pandas as pd
-pd.__version__
-import altair as alt
-import seaborn as sb
-import matplotlib.pyplot as plot
-
-
 am_dataframe = pd.read_csv("https://github.com/CarolinaAilenSepulveda/AM/blob/main/primer_dat.csv?raw=true", sep=",")
 am_dataframe.columns = ['fecha',	'confirmados',	'activos',	'recuperados',	'decesos',	'descartados',	'sospechosos',	'contencion_psicologica',	'monitoreo_epidemiologico',	'aislamiento_por_contacto_estrecho',	'aprehendidos']
 
